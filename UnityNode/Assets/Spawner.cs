@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     public GameObject SpawnPlayer(string id)
     {
         var player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-        player.GetComponent<ClickFollow>().myPlayerFollower = myPlayer.GetComponent<Follower>();
+        player.GetComponent<ClickFollow>().myPlayer = myPlayer;
         AddPlayer(id, player);
         return player;
     }

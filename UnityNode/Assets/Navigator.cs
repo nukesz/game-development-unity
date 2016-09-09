@@ -4,13 +4,13 @@ using System.Collections;
 public class Navigator : MonoBehaviour
 {
     private NavMeshAgent _agent;
-    private Follower _follower;
+    private Targeter _targeter;
 
 
     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _follower = GetComponent<Follower>();
+        _targeter = GetComponent<Targeter>();
     }
 
     void Update()
@@ -21,6 +21,6 @@ public class Navigator : MonoBehaviour
     public void NavigateTo(Vector3 position)
     {
         _agent.SetDestination(position);
-        _follower.target = null;
+        _targeter.target = null;
     }
 }

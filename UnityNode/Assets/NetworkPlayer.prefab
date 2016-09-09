@@ -87,6 +87,7 @@ GameObject:
   - 136: {fileID: 136000013001152018}
   - 114: {fileID: 114000012392327064}
   - 114: {fileID: 114000010738145178}
+  - 114: {fileID: 114000014039195788}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -684,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca59695328673bf44813f96c79c80d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayerFollower: {fileID: 0}
+  myPlayer: {fileID: 0}
   networkEntity: {fileID: 0}
 --- !u!114 &114000010652760694
 MonoBehaviour:
@@ -708,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a2739bd37aaa0438652c1f2fced764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  Targeter: {fileID: 0}
   scanFrequency: 0.5
   stopFollowDistance: 2
 --- !u!114 &114000012392327064
@@ -723,6 +724,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+--- !u!114 &114000014039195788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010211260898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cf9ca59e80d1f419263d852a4fe2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!136 &136000013001152018
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -62,9 +62,9 @@ public class Network : MonoBehaviour
     {
         Debug.Log("follow request: " + e.data);
         var player = spawner.FindPlayer(e.data["id"].str);
-        var target = spawner.FindPlayer(e.data["targetId"].str);
-        var follower = player.GetComponent<Follower>();
-        follower.target = target.transform;
+        var targetTransform = spawner.FindPlayer(e.data["targetId"].str).transform;
+        var target = player.GetComponent<Targeter>();
+        target.target = targetTransform;
 
     }
 
