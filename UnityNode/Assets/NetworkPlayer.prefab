@@ -83,10 +83,8 @@ GameObject:
   - 95: {fileID: 95000010446088994}
   - 195: {fileID: 195000011301296080}
   - 114: {fileID: 114000010652760694}
-  - 114: {fileID: 114000011146357456}
   - 114: {fileID: 114000010457280856}
   - 136: {fileID: 136000013001152018}
-  - 114: {fileID: 114000011018922780}
   - 114: {fileID: 114000012392327064}
   - 114: {fileID: 114000010738145178}
   m_Layer: 0
@@ -713,30 +711,6 @@ MonoBehaviour:
   target: {fileID: 0}
   scanFrequency: 0.5
   stopFollowDistance: 2
---- !u!114 &114000011018922780
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010211260898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9fc73734dd07ff4582ff4a4fb44939f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  socket: {fileID: 0}
---- !u!114 &114000011146357456
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010211260898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef26f9b78b0a979478585794146ba7f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  socket: {fileID: 0}
 --- !u!114 &114000012392327064
 MonoBehaviour:
   m_ObjectHideFlags: 1

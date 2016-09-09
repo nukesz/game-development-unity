@@ -42,9 +42,7 @@ public class Network : MonoBehaviour
         var player = spawner.SpawnPlayer(e.data["id"].str);
         if (e.data["x"])
         {
-            var x = GetFloatFromJson(e.data, "x");
-            var y = GetFloatFromJson(e.data, "y");
-            var movePosition = new Vector3(x, 0, y);
+            var movePosition = GetVectorFromJson(e);
             var navigatePos = player.GetComponent<Navigator>();
             navigatePos.NavigateTo(movePosition);
         }
@@ -54,10 +52,7 @@ public class Network : MonoBehaviour
     {
         Debug.Log("player is moving: " + e.data);
         var id = e.data["id"].str;
-        var x = GetFloatFromJson(e.data, "x");
-        var y = GetFloatFromJson(e.data, "y");
-        var pos = new Vector3(x, 0, y);
-
+        var pos = GetVectorFromJson(e);
         var player = spawner.FindPlayer(id);
         var navigatePos = player.GetComponent<Navigator>();
         navigatePos.NavigateTo(pos);
@@ -83,34 +78,50 @@ public class Network : MonoBehaviour
     private void OnRequestPosition(SocketIOEvent e)
     {
         Debug.Log("server is asking position");
-        socket.Emit("updatePosition", new JSONObject(Network.VectorToJson(myPlayer.transform.position)));
+        socket.Emit("updatePosition", Network.VectorToJson(myPlayer.transform.position));
     }
 
     private void OnUpdatePosition(SocketIOEvent e)
     {
         Debug.Log("update position: " + e.data);
         var id = e.data["id"].str;
-        var x = GetFloatFromJson(e.data, "x");
-        var y = GetFloatFromJson(e.data, "y");
-        var pos = new Vector3(x, 0, y);
-
+        var pos = GetVectorFromJson(e);
         var player = spawner.FindPlayer(id);
         player.transform.position = pos;
     }
 
-
-    private float GetFloatFromJson(JSONObject json, string key)
+    public static void Move(Vector3 position)
     {
-        return float.Parse(json[key].str);
+        Debug.Log("sending position to node: " + VectorToJson(position));
+        socket.Emit("move", VectorToJson(position));
     }
 
-    public static string VectorToJson(Vector3 vector)
+    public static void Follow(string id)
     {
-        return string.Format(@"{{""x"":""{0}"", ""y"":""{1}""}}", vector.x, vector.z);
+        Debug.Log("sending follow player id: " + PlayerIdToJson(id));
+        socket.Emit("follow", PlayerIdToJson(id));
     }
 
-    public static string PlayerIdToJson(string id)
+
+    private static Vector3 GetVectorFromJson(SocketIOEvent e)
     {
-        return string.Format(@"{{""targetId"":""{0}""}}", id);
+        return new Vector3(e.data["x"].n, 0, e.data["y"].n);
     }
+
+    public static JSONObject VectorToJson(Vector3 vector)
+    {
+        var json = new JSONObject(JSONObject.Type.OBJECT);
+        json.AddField("x", vector.x);
+        json.AddField("y", vector.y);
+        return json;
+    }
+
+
+    public static JSONObject PlayerIdToJson(string id)
+    {
+        var json = new JSONObject(JSONObject.Type.OBJECT);
+        json.AddField("targetId", id);
+        return json;
+    }
+
 }

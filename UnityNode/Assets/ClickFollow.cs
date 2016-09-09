@@ -14,7 +14,7 @@ public class ClickFollow : MonoBehaviour, IClickable
     public void OnClick(RaycastHit hit)
     {
         Debug.Log("following: " + hit.collider.gameObject.name);
-        GetComponent<NetworkFollow>().OnFollow(networkEntity.id);
+        Network.Follow(networkEntity.id);
         myPlayerFollower.target = transform;
     }
 }

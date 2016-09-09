@@ -9,8 +9,7 @@ public class ClickMove : MonoBehaviour, IClickable
     public void OnClick(RaycastHit hit)
     {
         var navigator = player.GetComponent<Navigator>();
-        var netMove = player.GetComponent<NetworkMove>();
         navigator.NavigateTo(hit.point);
-        netMove.Move(hit.point);
+        Network.Move(hit.point);
     }
 }
