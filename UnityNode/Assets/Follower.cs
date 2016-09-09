@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Follower : MonoBehaviour
 {
-
     public Transform target;
 
     public float scanFrequency = 0.5f;
@@ -12,19 +11,20 @@ public class Follower : MonoBehaviour
     private float lastScanTime = 0f;
     private Navigator _navigator;
 
-	void Start ()
-	{
-	    _navigator = GetComponent<Navigator>();
-	}
-	
-	void Update () {
-	    if (IsReadyToScan() && !IsInRange())
-	    {
-	        Debug.Log("scanning nav path");
-	        lastScanTime = Time.time;
-	        _navigator.NavigateTo(target.position);
-	    }
-	}
+    void Start()
+    {
+        _navigator = GetComponent<Navigator>();
+    }
+
+    void Update()
+    {
+        if (IsReadyToScan() && !IsInRange())
+        {
+            Debug.Log("scanning nav path");
+            lastScanTime = Time.time;
+            _navigator.NavigateTo(target.position);
+        }
+    }
 
     private bool IsInRange()
     {

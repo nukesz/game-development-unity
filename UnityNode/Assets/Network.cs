@@ -5,7 +5,6 @@ using SocketIO;
 
 public class Network : MonoBehaviour
 {
-
     static SocketIOComponent socket;
 
     public GameObject myPlayer;
@@ -91,5 +90,4 @@ public class Network : MonoBehaviour
     {
         return string.Format(@"{{""x"":""{0}"", ""y"":""{1}""}}", vector.x, vector.z);
     }
-
 }

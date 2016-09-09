@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ClickFollow : MonoBehaviour, IClickable {
-
+public class ClickFollow : MonoBehaviour, IClickable
+{
     public Follower myPlayerFollower;
 
     public void OnClick(RaycastHit hit)
