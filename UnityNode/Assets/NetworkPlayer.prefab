@@ -86,6 +86,9 @@ GameObject:
   - 114: {fileID: 114000011146357456}
   - 114: {fileID: 114000010457280856}
   - 136: {fileID: 136000013001152018}
+  - 114: {fileID: 114000011018922780}
+  - 114: {fileID: 114000012392327064}
+  - 114: {fileID: 114000010738145178}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -684,6 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayerFollower: {fileID: 0}
+  networkEntity: {fileID: 0}
 --- !u!114 &114000010652760694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -695,6 +699,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89dcd8fb2c140342aaa3b1e9cfb62ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000010738145178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010211260898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a2739bd37aaa0438652c1f2fced764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  scanFrequency: 0.5
+  stopFollowDistance: 2
+--- !u!114 &114000011018922780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010211260898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9fc73734dd07ff4582ff4a4fb44939f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socket: {fileID: 0}
 --- !u!114 &114000011146357456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -707,6 +737,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 0}
+--- !u!114 &114000012392327064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010211260898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520cf34b4e496464f91ecdfeb6910678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!136 &136000013001152018
 CapsuleCollider:
   m_ObjectHideFlags: 1

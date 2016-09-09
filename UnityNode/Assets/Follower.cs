@@ -9,11 +9,12 @@ public class Follower : MonoBehaviour
     public float stopFollowDistance = 2f;
 
     private float lastScanTime = 0f;
-    private Navigator _navigator;
+
+    private NavMeshAgent _agent;
 
     void Start()
     {
-        _navigator = GetComponent<Navigator>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -22,7 +23,7 @@ public class Follower : MonoBehaviour
         {
             Debug.Log("scanning nav path");
             lastScanTime = Time.time;
-            _navigator.NavigateTo(target.position);
+            _agent.SetDestination(target.position);
         }
     }
 
