@@ -89,6 +89,7 @@ GameObject:
   - 114: {fileID: 114000010738145178}
   - 114: {fileID: 114000014039195788}
   - 114: {fileID: 114000010153239704}
+  - 114: {fileID: 114000013636294728}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -687,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackDistance: 1
+  AttackRate: 2
 --- !u!114 &114000010457280856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,6 +739,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+--- !u!114 &114000013636294728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010211260898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edea1dab75f029b45806092904f72216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &114000014039195788
 MonoBehaviour:
   m_ObjectHideFlags: 1

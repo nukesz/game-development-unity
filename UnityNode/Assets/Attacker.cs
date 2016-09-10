@@ -22,6 +22,8 @@ public class Attacker : MonoBehaviour
         if (IsReadyToAttacK() && _targeter.IsInRange(AttackDistance))
         {
             Debug.Log("Attacking");
+            var targetId = _targeter.target.GetComponent<NetworkEntity>().id;
+            Network.Attack(targetId);
             _lastAttackTime = Time.time;
         }
     }

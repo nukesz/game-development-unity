@@ -19,11 +19,11 @@ public class Network : MonoBehaviour
         socket.On("spawn", OnSpawned);
         socket.On("move", OnMoved);
         socket.On("follow", OnFollow);
+        socket.On("attack", OnAttack);
         socket.On("disconnected", OnDisconnected);
         socket.On("requestPosition", OnRequestPosition);
         socket.On("updatePosition", OnUpdatePosition);
     }
-
 
     private void OnConnected(SocketIOEvent e)
     {
@@ -65,7 +65,13 @@ public class Network : MonoBehaviour
         var targetTransform = spawner.FindPlayer(e.data["targetId"].str).transform;
         var target = player.GetComponent<Targeter>();
         target.target = targetTransform;
+    }
 
+    private void OnAttack(SocketIOEvent e)
+    {
+        Debug.Log("received attack: " + e.data);
+        var targetPlayer = spawner.FindPlayer(e.data["targetId"].str);
+        targetPlayer.GetComponent<Hittable>().health -= 10;
     }
 
     private void OnDisconnected(SocketIOEvent e)
@@ -102,6 +108,12 @@ public class Network : MonoBehaviour
         socket.Emit("follow", PlayerIdToJson(id));
     }
 
+    public static void Attack(string targetId)
+    {
+        Debug.Log("attacking player: " + PlayerIdToJson(targetId));
+        socket.Emit("attack", PlayerIdToJson(targetId));
+    }
+
 
     private static Vector3 GetVectorFromJson(SocketIOEvent e)
     {
@@ -112,7 +124,7 @@ public class Network : MonoBehaviour
     {
         var json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("x", vector.x);
-        json.AddField("y", vector.y);
+        json.AddField("y", vector.z);
         return json;
     }
 
