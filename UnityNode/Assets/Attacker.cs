@@ -32,4 +32,5 @@ public class Attacker : MonoBehaviour
     {
         return _targeter.target && Time.time - _lastAttackTime > AttackRate;
     }
+
 }

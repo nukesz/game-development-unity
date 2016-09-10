@@ -70,6 +70,9 @@ public class Network : MonoBehaviour
     private void OnAttack(SocketIOEvent e)
     {
         Debug.Log("received attack: " + e.data);
+        var attackingPlayer = spawner.FindPlayer(e.data["id"].str);
+        attackingPlayer.GetComponent<Animator>().SetTrigger("Attack");
+
         var targetPlayer = spawner.FindPlayer(e.data["targetId"].str);
         targetPlayer.GetComponent<Hittable>().health -= 10;
     }
