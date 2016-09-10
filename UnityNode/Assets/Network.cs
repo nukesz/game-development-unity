@@ -86,23 +86,26 @@ public class Network : MonoBehaviour
 
     private void OnRequestPosition(SocketIOEvent e)
     {
-        Debug.Log("server is asking position");
+        Debug.Log("server is asking destination");
         socket.Emit("updatePosition", Network.VectorToJson(myPlayer.transform.position));
     }
 
     private void OnUpdatePosition(SocketIOEvent e)
     {
-        Debug.Log("update position: " + e.data);
+        Debug.Log("update destination: " + e.data);
         var id = e.data["id"].str;
         var pos = GetVectorFromJson(e);
         var player = spawner.FindPlayer(id);
         player.transform.position = pos;
     }
 
-    public static void Move(Vector3 position)
+    public static void Move(Vector3 current, Vector3 destination)
     {
-        Debug.Log("sending position to node: " + VectorToJson(position));
-        socket.Emit("move", VectorToJson(position));
+        Debug.Log("sending destination to node: " + VectorToJson(destination));
+        var json = new JSONObject(JSONObject.Type.OBJECT);
+        json.AddField("c", VectorToJson(current));
+        json.AddField("d", VectorToJson(destination));
+        socket.Emit("move", json);
     }
 
     public static void Follow(string id)

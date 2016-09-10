@@ -4,14 +4,22 @@ var shortid = require('shortid');
 console.log('server started');
 
 var players = [];
+var playerSpeed = 3;
 
 io.on('connection', function(socket) {
   var thisPlayerId = shortid.generate();
 
   var player = {
     id: thisPlayerId,
-    x: 0,
-    y: 0
+    destination: {
+      x: 0,
+      y: 0     
+    },
+    lastPosition: {
+      x: 0,
+      y: 0     
+    },
+    lastMoveTime: 0
   };
 
   players[thisPlayerId] = player;
@@ -35,8 +43,29 @@ io.on('connection', function(socket) {
   socket.on('move', function(data) {
     data.id = thisPlayerId;
     console.log('client moved: ', JSON.stringify(data));
-    player.x = data.x;
-    player.y = data.y;
+    player.destination = data.d;
+
+    console.log("distance between current and destination:", 
+      lineDistance(player.lastPosition, player.destination));
+    var elapsedTime = Date.now() - player.lastMoveTime;
+    var travelDistanceLimit = elapsedTime * playerSpeed / 1000;
+    var requestedDistanceTraveled = lineDistance(player.lastPosition, data.c);
+
+
+    console.log("travelDistanceLimit:", travelDistanceLimit);
+    console.log("requestedDistanceTraveled:", requestedDistanceTraveled);
+    if (requestedDistanceTraveled > travelDistanceLimit) {
+      // We know they are cheating
+    }
+
+    player.lastMoveTime = Date.now();
+
+    player.lastPosition = data.c;
+    delete data.c;
+    data.x = data.d.x;
+    data.y = data.d.y;
+    delete data.d;
+
     socket.broadcast.emit('move', data);
   });
 
@@ -66,3 +95,11 @@ io.on('connection', function(socket) {
 
 
 });
+
+function lineDistance(vectorA, vectorB) {
+  var xs = vectorB.x - vectorA.x;
+  var ys = vectorB.y - vectorA.y;
+  xs = xs * xs;
+  ys = ys * ys;
+  return Math.sqrt(xs + ys); 
+}
