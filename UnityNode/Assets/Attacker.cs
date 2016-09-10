@@ -19,7 +19,17 @@ public class Attacker : MonoBehaviour
 
     void Update()
     {
-        if (IsReadyToAttacK() && _targeter.IsInRange(AttackDistance))
+        if (!IsReadyToAttack())
+        {
+            return;
+        }
+
+        if (IsTargetDead())
+        {
+            _targeter.ResetTarget();
+            return;
+        }
+        if (_targeter.IsInRange(AttackDistance))
         {
             Debug.Log("Attacking");
             var targetId = _targeter.target.GetComponent<NetworkEntity>().id;
@@ -28,9 +38,14 @@ public class Attacker : MonoBehaviour
         }
     }
 
-    bool IsReadyToAttacK()
+    bool IsReadyToAttack()
     {
         return _targeter.target && Time.time - _lastAttackTime > AttackRate;
+    }
+
+    bool IsTargetDead()
+    {
+        return _targeter.target.GetComponent<Hittable>().IsDead;
     }
 
 }

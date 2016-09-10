@@ -146,6 +146,11 @@ Prefab:
       propertyPath: myPlayer
       value: 
       objectReference: {fileID: 1306739545}
+    - target: {fileID: 114000013636294728, guid: 2b0cb4ec465778b44984084616a89198,
+        type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b0cb4ec465778b44984084616a89198, type: 2}
   m_IsPrefabParent: 0
@@ -380,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b26d9d83394704ab9a05ce617a9970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDistance: 1
-  AttackRate: 2
+  AttackDistance: 1.5
+  AttackRate: 1
 --- !u!1 &1632204517
 GameObject:
   m_ObjectHideFlags: 0

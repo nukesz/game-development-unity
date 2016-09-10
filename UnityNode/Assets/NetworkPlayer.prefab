@@ -737,6 +737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  respawnTime: 5
 --- !u!114 &114000014039195788
 MonoBehaviour:
   m_ObjectHideFlags: 1

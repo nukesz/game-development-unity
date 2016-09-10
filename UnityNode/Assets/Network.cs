@@ -74,7 +74,7 @@ public class Network : MonoBehaviour
         attackingPlayer.GetComponent<Animator>().SetTrigger("Attack");
 
         var targetPlayer = spawner.FindPlayer(e.data["targetId"].str);
-        targetPlayer.GetComponent<Hittable>().health -= 10;
+        targetPlayer.GetComponent<Hittable>().OnHit();
     }
 
     private void OnDisconnected(SocketIOEvent e)
