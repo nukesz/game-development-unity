@@ -1,15 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using JetBrains.Annotations;
 
 public class Attacker : MonoBehaviour
 {
-    // Use this for initialization
+    public float AttackDistance = 1f;
+    public float AttackRate = 2f;
+
+    private float _lastAttackTime = 0f;
+
+    private Targeter _targeter;
+
     void Start()
     {
+        _targeter = GetComponent<Targeter>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (IsReadyToAttacK() && _targeter.IsInRange(AttackDistance))
+        {
+            Debug.Log("Attacking");
+            _lastAttackTime = Time.time;
+        }
+    }
+
+    bool IsReadyToAttacK()
+    {
+        return _targeter.target && Time.time - _lastAttackTime > AttackRate;
     }
 }
